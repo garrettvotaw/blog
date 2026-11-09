@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import Newsletter from '../components/Newsletter.astro';
@@ -17,15 +18,15 @@ const posts = (await getPosts()).slice(0, 5);
       what actually works, what breaks, and how to build software faster without lowering the bar.
     </p>
     <p class="cta-row">
-      <a class="button" href="/blog/">Read the writing</a>
-      <a class="button ghost" href="/work-with-me/">Work with me</a>
+      <a class="button" href={url('/blog/')}>Read the writing</a>
+      <a class="button ghost" href={url('/work-with-me/')}>Work with me</a>
     </p>
   </section>
 
   <section class="wrap">
     <h2>Latest</h2>
     {posts.length === 0 ? <p>First posts are on the way.</p> : posts.map((post) => <PostCard post={post} />)}
-    {posts.length > 0 && <p><a href="/blog/">All posts →</a></p>}
+    {posts.length > 0 && <p><a href={url('/blog/')}>All posts →</a></p>}
   </section>
 
   <section class="wrap">

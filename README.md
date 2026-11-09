@@ -6,9 +6,10 @@ Astro static site, deployed free to GitHub Pages. Built for search from day one:
 
 1. `npm install`, then commit the generated `package-lock.json` (the deploy workflow needs it).
 2. `npm run dev` and open http://localhost:4321. Drafts are visible in dev only.
-3. Set your domain in **two places**:
-   - `astro.config.mjs` → `SITE`
-   - `public/CNAME` → the bare domain, e.g. `sunrisedev.io`
+3. The site currently lives at https://garrettvotaw.github.io/blog/. When you buy a domain:
+   - `astro.config.mjs` → set `SITE` to `https://yourdomain.com` and `BASE` to `'/'`
+   - add `public/CNAME` containing the bare domain, e.g. `sunrisedev.io`
+   - always link internally with `url()` / `absUrl()` from `src/utils/url.ts` so links follow the base
 4. Fill in `src/consts.ts`: LinkedIn and X links, newsletter form action, giscus settings. Empty values hide those features.
 5. Replace `hello@example.com` on `src/pages/work-with-me.astro` with a real contact method.
 

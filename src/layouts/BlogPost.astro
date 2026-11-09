@@ -1,4 +1,5 @@
 ---
+import { absUrl, url } from '../utils/url';
 import BaseLayout from './BaseLayout.astro';
 import Newsletter from '../components/Newsletter.astro';
 import Comments from '../components/Comments.astro';
@@ -13,36 +14,35 @@ interface Props {
 
 const { post, headings } = Astro.props;
 const { title, description, pubDate, updatedDate, tags, ogImage, draft } = post.data;
-const site = Astro.site!;
-const url = new URL(`/blog/${post.id}/`, site).href;
+const postUrl = absUrl(`/blog/${post.id}/`);
 const minutes = readingMinutes(post.body);
 const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
 
 const schema = [
   {
     '@type': 'BlogPosting',
-    '@id': `${url}#article`,
+    '@id': `${postUrl}#article`,
     headline: title,
     description,
-    url,
-    mainEntityOfPage: url,
+    url: postUrl,
+    mainEntityOfPage: postUrl,
     datePublished: pubDate.toISOString(),
     dateModified: (updatedDate ?? pubDate).toISOString(),
-    image: new URL(ogImage ?? SITE.defaultOgImage, site).href,
+    image: absUrl(ogImage ?? SITE.defaultOgImage),
     keywords: tags.join(', '),
     wordCount: (post.body ?? '').split(/\s+/).filter(Boolean).length,
     timeRequired: `PT${minutes}M`,
     inLanguage: 'en-US',
-    author: { '@id': `${site.href}#person` },
-    publisher: { '@id': `${site.href}#org` },
-    isPartOf: { '@id': `${site.href}#website` },
+    author: { '@id': `${absUrl('/')}#person` },
+    publisher: { '@id': `${absUrl('/')}#org` },
+    isPartOf: { '@id': `${absUrl('/')}#website` },
   },
   {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: site.href },
-      { '@type': 'ListItem', position: 2, name: 'Writing', item: new URL('/blog/', site).href },
-      { '@type': 'ListItem', position: 3, name: title, item: url },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: absUrl('/') },
+      { '@type': 'ListItem', position: 2, name: 'Writing', item: absUrl('/blog/') },
+      { '@type': 'ListItem', position: 3, name: title, item: postUrl },
     ],
   },
 ];
@@ -61,7 +61,7 @@ const schema = [
 >
   <article class="wrap post">
     <nav class="crumbs" aria-label="Breadcrumb">
-      <a href="/">Home</a> / <a href="/blog/">Writing</a>
+      <a href={url('/')}>Home</a> / <a href={url('/blog/')}>Writing</a>
     </nav>
 
     <header class="post-header">
@@ -80,7 +80,7 @@ const schema = [
       {tags.length > 0 && (
         <ul class="tags">
           {tags.map((tag) => (
-            <li><a href={`/tags/${tagSlug(tag)}/`}>#{tag}</a></li>
+            <li><a href={url(`/tags/${tagSlug(tag)}/`)}>#{tag}</a></li>
           ))}
         </ul>
       )}

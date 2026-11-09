@@ -1,15 +1,15 @@
 ---
+import { absUrl } from '../utils/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE, SERVICE_AREA } from '../consts';
 
-const site = Astro.site!;
 const schema = [
   {
     '@type': 'ProfessionalService',
-    '@id': `${site.href}#service`,
+    '@id': `${absUrl('/')}#service`,
     name: SITE.name,
-    url: new URL('/work-with-me/', site).href,
-    provider: { '@id': `${site.href}#org` },
+    url: absUrl('/work-with-me/'),
+    provider: { '@id': `${absUrl('/')}#org` },
     areaServed: SERVICE_AREA,
     serviceType: ['Custom software development', 'AI automation', 'iOS app development', 'Web application development'],
   },

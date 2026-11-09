@@ -13,7 +13,8 @@ Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goa
 
 ## Where things live
 
-- Domain: `site` in `astro.config.mjs` plus `public/CNAME`. Both still say `example.com` until the domain is chosen.
+- URL: `SITE` and `BASE` in `astro.config.mjs`. No domain yet, so the site is served at https://garrettvotaw.github.io/blog/ (`BASE = '/blog'`). When a domain is bought: set `SITE` to it, `BASE` to `'/'`, and add `public/CNAME` with the bare domain.
+- Internal links and absolute URLs: always use `url()` / `absUrl()` from `src/utils/url.ts`, never a hardcoded `/path/`, so they work under any base.
 - Identity, socials, newsletter, giscus: `src/consts.ts`. Empty values hide those features.
 - All SEO tags and JSON-LD: `src/components/BaseHead.astro`; post schema in `src/layouts/BlogPost.astro`.
 - Post frontmatter schema with SEO length limits: `src/content.config.ts`.
@@ -34,7 +35,7 @@ Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goa
 
 ## Open TODOs
 
-- Choose and set the domain (two places above).
+- Choose and set a domain (see URL above), then set it in the repo's Settings → Pages.
 - Fill LinkedIn/X links, newsletter form action, and giscus IDs in `src/consts.ts`.
 - Replace `hello@example.com` on `src/pages/work-with-me.astro` with a real contact method.
 - Confirm the About page wording about the day job.

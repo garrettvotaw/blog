@@ -1,11 +1,12 @@
 ---
+import { url } from '../utils/url';
 import { SITE, AUTHOR } from '../consts';
 
 const socials = [
   { href: AUTHOR.github, label: 'GitHub' },
   { href: AUTHOR.linkedin, label: 'LinkedIn' },
   { href: AUTHOR.x, label: 'X' },
-  { href: '/rss.xml', label: 'RSS' },
+  { href: url('/rss.xml'), label: 'RSS' },
 ].filter((s) => s.href);
 ---
 

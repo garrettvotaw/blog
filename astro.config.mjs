@@ -4,14 +4,20 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 // ─────────────────────────────────────────────────────────────
-// SET YOUR DOMAIN HERE. Everything else (canonical URLs, sitemap,
-// RSS, robots.txt, structured data) reads from this one value.
-// Also update public/CNAME to the same domain (no https://).
+// SITE + BASE decide every URL (canonical, sitemap, RSS, robots.txt,
+// structured data, internal links via src/utils/url.ts).
+//
+// Now (no custom domain): GitHub Pages project site at
+//   https://garrettvotaw.github.io/blog/
+// When you buy a domain: set SITE to 'https://yourdomain.com', set
+// BASE to '/', and add public/CNAME containing the bare domain.
 // ─────────────────────────────────────────────────────────────
-const SITE = 'https://example.com';
+const SITE = 'https://garrettvotaw.github.io';
+const BASE = '/blog';
 
 export default defineConfig({
   site: SITE,
+  base: BASE,
   trailingSlash: 'always',
   integrations: [
     mdx(),

@@ -1,13 +1,13 @@
 ---
+import { absUrl, url } from '../utils/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { AUTHOR } from '../consts';
 
-const site = Astro.site!;
 const schema = [
   {
     '@type': 'ProfilePage',
-    url: new URL('/about/', site).href,
-    mainEntity: { '@id': `${site.href}#person` },
+    url: absUrl('/about/'),
+    mainEntity: { '@id': `${absUrl('/')}#person` },
   },
 ];
 ---
@@ -47,7 +47,7 @@ const schema = [
 
     <h2>Get in touch</h2>
     <p>
-      Interested in working together? See <a href="/work-with-me/">work with me</a>. You can also find me on
+      Interested in working together? See <a href={url('/work-with-me/')}>work with me</a>. You can also find me on
       <a href={AUTHOR.github} rel="me noopener">GitHub</a>{AUTHOR.linkedin && (<>, <a href={AUTHOR.linkedin} rel="me noopener">LinkedIn</a></>)}.
     </p>
   </section>

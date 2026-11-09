@@ -1,4 +1,5 @@
 ---
+import { url } from '../utils/url';
 import type { Post } from '../utils/posts';
 import { formatDate, readingMinutes } from '../utils/posts';
 
@@ -11,7 +12,7 @@ const { title, description, pubDate, draft } = post.data;
 
 <article class="post-card">
   <h3>
-    <a href={`/blog/${post.id}/`}>{title}</a>
+    <a href={url(`/blog/${post.id}/`)}>{title}</a>
     {draft && <span class="badge">Draft</span>}
   </h3>
   <p>{description}</p>
