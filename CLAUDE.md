@@ -18,7 +18,7 @@ Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goa
 - Identity, socials, newsletter, giscus: `src/consts.ts`. Empty values hide those features.
 - All SEO tags and JSON-LD: `src/components/BaseHead.astro`; post schema in `src/layouts/BlogPost.astro`.
 - Post frontmatter schema with SEO length limits: `src/content.config.ts`.
-- Design ("First Light"): home hero is `src/components/Horizon.astro`, a CSS sky that mirrors the real sky over Lawton (night/dawn/day/dusk from a tiny inline sunrise calc). Styles at the bottom of `src/styles/global.css`. Headings use a system serif stack; keep motion behind `prefers-reduced-motion`.
+- Design: editorial minimal. Small system-font type, whitespace, near-monochrome (`src/styles/global.css`). Detail lives in subtle CSS motion: dimming `.rows` lists, sliding arrows, drawn underlines, staggered entrance, cross-page view transitions. Keep motion subtle and behind `prefers-reduced-motion`; no illustrations or decorative gradients.
 
 ## SEO rules (keep these intact)
 

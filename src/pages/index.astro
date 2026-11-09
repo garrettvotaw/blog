@@ -1,36 +1,65 @@
 ---
 import { url } from '../utils/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Horizon from '../components/Horizon.astro';
 import PostCard from '../components/PostCard.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getPosts } from '../utils/posts';
-import { SITE } from '../consts';
+import { SITE, AUTHOR } from '../consts';
 
-const posts = (await getPosts()).slice(0, 5);
+const posts = (await getPosts()).slice(0, 8);
+const elsewhere = [
+  { href: AUTHOR.github, label: 'GitHub', meta: 'Code' },
+  { href: AUTHOR.linkedin, label: 'LinkedIn', meta: 'Career' },
+  { href: AUTHOR.x, label: 'X', meta: 'Notes' },
+  { href: url('/rss.xml'), label: 'RSS', meta: 'Feed' },
+].filter((s) => s.href);
 ---
 
 <BaseLayout title={SITE.title} description={SITE.description}>
-  <Horizon>
-    <p class="eyebrow">Garrett Votaw · Sunrise Development</p>
-    <h1 id="hero-title">Shipping production software at team speed, as <em>one developer</em> with AI.</h1>
-    <p class="lede">
-      I lead AI development work and build agentic systems that plan, write, review, and ship code. Here I write about
-      what actually works, what breaks, and how to build software faster without lowering the bar.
-    </p>
-    <p class="cta-row">
-      <a class="button" href={url('/blog/')}>Read the writing</a>
-      <a class="button ghost" href={url('/work-with-me/')}>Work with me</a>
-    </p>
-  </Horizon>
+  <div class="wrap stagger">
+    <section class="intro">
+      <h1>{AUTHOR.name}</h1>
+      <p class="muted">Building production software with AI agents. Lawton, Oklahoma.</p>
+      <p>
+        I lead AI development work and build agentic systems that plan, write, review, and ship code, which lets one
+        developer move at team speed. Here I write about what actually works, what breaks, and how to build software
+        faster without lowering the bar.
+      </p>
+      <p>
+        I also run <a class="link" href={url('/work-with-me/')}>Sunrise Development</a>, building custom software and
+        AI automation for businesses in Southwest Oklahoma and remotely.
+      </p>
+    </section>
 
-  <section class="wrap">
-    <h2>Latest</h2>
-    {posts.length === 0 ? <p>First posts are on the way.</p> : posts.map((post) => <PostCard post={post} />)}
-    {posts.length > 0 && <p><a href={url('/blog/')}>All posts →</a></p>}
-  </section>
+    <section class="block">
+      <h2 class="label">Writing</h2>
+      {
+        posts.length === 0 ? (
+          <p class="muted">First posts are on the way.</p>
+        ) : (
+          <ul class="rows internal">
+            {posts.map((post) => <PostCard post={post} />)}
+          </ul>
+        )
+      }
+    </section>
 
-  <section class="wrap">
+    <section class="block">
+      <h2 class="label">Elsewhere</h2>
+      <ul class="rows">
+        {
+          elsewhere.map(({ href, label, meta }) => (
+            <li>
+              <a href={href} rel={href.startsWith('http') ? 'me noopener' : undefined}>
+                <span class="row-title"><span class="t">{label}</span></span>
+                <span class="row-meta">{meta}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
     <Newsletter />
-  </section>
+  </div>
 </BaseLayout>

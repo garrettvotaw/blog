@@ -59,13 +59,13 @@ const schema = [
   noindex={draft}
   schema={schema}
 >
-  <article class="wrap post">
+  <article class="wrap post stagger">
     <nav class="crumbs" aria-label="Breadcrumb">
       <a href={url('/')}>Home</a> / <a href={url('/blog/')}>Writing</a>
     </nav>
 
     <header class="post-header">
-      {draft && <p class="badge">Draft — not published</p>}
+      {draft && <p class="meta">Draft, not published</p>}
       <h1>{title}</h1>
       <p class="lede">{description}</p>
       <p class="meta">
@@ -80,7 +80,7 @@ const schema = [
       {tags.length > 0 && (
         <ul class="tags">
           {tags.map((tag) => (
-            <li><a href={url(`/tags/${tagSlug(tag)}/`)}>#{tag}</a></li>
+            <li><a href={url(`/tags/${tagSlug(tag)}/`)}>{tag}</a></li>
           ))}
         </ul>
       )}

@@ -12,7 +12,7 @@ const socials = [
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p>© {new Date().getFullYear()} {SITE.name} · {AUTHOR.location}</p>
+    <p>© {new Date().getFullYear()} {SITE.name} · {AUTHOR.location}<span class="clock" data-tz="America/Chicago"></span></p>
     <ul>
       {socials.map(({ href, label }) => (
         <li><a href={href} rel={href.startsWith('http') ? 'me noopener' : undefined}>{label}</a></li>
@@ -20,3 +20,15 @@ const socials = [
     </ul>
   </div>
 </footer>
+
+<script is:inline>
+  // Local time in Lawton, ticking. Pure enhancement: nothing shows without JS.
+  (() => {
+    const el = document.querySelector('.clock');
+    if (!el) return;
+    const fmt = new Intl.DateTimeFormat('en-US', { timeZone: el.dataset.tz, hour: 'numeric', minute: '2-digit' });
+    const tick = () => (el.textContent = ' · ' + fmt.format(new Date()));
+    tick();
+    setInterval(tick, 15000);
+  })();
+</script>

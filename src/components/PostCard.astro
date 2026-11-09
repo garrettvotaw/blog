@@ -1,22 +1,22 @@
 ---
 import { url } from '../utils/url';
 import type { Post } from '../utils/posts';
-import { formatDate, readingMinutes } from '../utils/posts';
 
 interface Props {
   post: Post;
+  showDescription?: boolean;
 }
-const { post } = Astro.props;
+const { post, showDescription = false } = Astro.props;
 const { title, description, pubDate, draft } = post.data;
+const shortDate = pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 ---
 
-<article class="post-card">
-  <h3>
-    <a href={url(`/blog/${post.id}/`)}>{title}</a>
-    {draft && <span class="badge">Draft</span>}
-  </h3>
-  <p>{description}</p>
-  <p class="meta">
-    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time> · {readingMinutes(post.body)} min read
-  </p>
-</article>
+<li>
+  <a href={url(`/blog/${post.id}/`)}>
+    <span class="row-title">
+      <span class="t">{title}</span>{draft && <span class="badge">draft</span>}
+      {showDescription && <span class="row-desc">{description}</span>}
+    </span>
+    <time class="row-meta" datetime={pubDate.toISOString()}>{shortDate}</time>
+  </a>
+</li>

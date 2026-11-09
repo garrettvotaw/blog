@@ -30,9 +30,10 @@ const { name, posts } = Astro.props;
   description={`Articles about ${name}: practical lessons on AI-assisted development and agentic workflows from Garrett Votaw.`}
   noindex={posts.length < 2}
 >
-  <section class="wrap">
+  <section class="wrap stagger">
     <p class="crumbs"><a href={url('/blog/')}>Writing</a> / tag</p>
     <h1>#{name}</h1>
-    {posts.map((post) => <PostCard post={post} />)}
+    <p class="lede">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+    <ul class="rows internal">{posts.map((post) => <PostCard post={post} showDescription />)}</ul>
   </section>
 </BaseLayout>
