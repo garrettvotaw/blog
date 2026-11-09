@@ -1,13 +1,16 @@
-/* Sunrise — warm, quiet, fast. System fonts: zero font requests, best Core Web Vitals. */
+/* Sunrise — crisp white and ink, dawn-gold accent, fast. System fonts: zero font requests, best Core Web Vitals. */
 :root {
-  --bg: #fffdf8;
-  --surface: #fff6e8;
-  --text: #1f1a14;
-  --muted: #6b6257;
-  --border: #eadfce;
-  --accent: #c2410c;
-  --accent-soft: #fde7cf;
-  --code-bg: #f6f1ea;
+  --bg: #ffffff;
+  --surface: #fafafa;
+  --text: #121212;
+  --muted: #5f5f5f;
+  --border: #e6e6e6;
+  --accent: #8a6100;
+  --button-bg: #121212;
+  --accent-soft: #fff4cc;
+  --highlight: #f5b700;
+  --on-accent: #ffffff;
+  --code-bg: #f5f5f5;
   --max: 42rem;
   --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
@@ -15,14 +18,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14110e;
-    --surface: #1d1915;
-    --text: #f2ebe2;
-    --muted: #a99e90;
-    --border: #2f2922;
-    --accent: #fb923c;
-    --accent-soft: #3a2616;
-    --code-bg: #1d1915;
+    --bg: #101010;
+    --surface: #181818;
+    --text: #f0f0f0;
+    --muted: #a3a3a3;
+    --border: #2a2a2a;
+    --accent: #f5c542;
+    --accent-soft: #2e2608;
+    --highlight: #f5b700;
+    --on-accent: #101010;
+    --button-bg: #f5c542;
+    --code-bg: #181818;
   }
   .astro-code,
   .astro-code span {
@@ -50,7 +56,7 @@ main { flex: 1; padding-block: 2.5rem 4rem; }
 .wrap { max-width: var(--max); margin-inline: auto; padding-inline: 1.25rem; }
 section.wrap + section.wrap { margin-top: 3rem; }
 
-a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; text-decoration-color: var(--highlight); }
 a:hover { text-decoration-thickness: 2px; }
 
 h1, h2, h3 { line-height: 1.25; letter-spacing: -0.015em; text-wrap: balance; }
@@ -85,7 +91,7 @@ h3 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
 .cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
 .button {
   display: inline-block; padding: 0.65rem 1.2rem; border-radius: 999px;
-  background: var(--accent); color: #fff; text-decoration: none; font-weight: 600;
+  background: var(--button-bg); color: var(--on-accent); text-decoration: none; font-weight: 600;
 }
 .button.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
 .button:hover { filter: brightness(1.08); }
@@ -120,5 +126,6 @@ h3 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
 .newsletter h2 { margin-top: 0; font-size: 1.2rem; }
 .newsletter form { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .newsletter input { flex: 1 1 14rem; padding: 0.6rem 0.9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font: inherit; }
-.newsletter button { padding: 0.6rem 1.2rem; border-radius: 999px; border: 0; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.newsletter button { padding: 0.6rem 1.2rem; border-radius: 999px; border: 0; background: var(--button-bg); color: var(--on-accent); font: inherit; font-weight: 600; cursor: pointer; }
 .comments { margin-top: 3rem; }
+::selection { background: var(--highlight); color: #121212; }

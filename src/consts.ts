@@ -8,7 +8,7 @@ export const SITE = {
     'Practical writing on agentic AI workflows, multi-agent architecture, and shipping production software fast with AI. From Lawton, Oklahoma.',
   locale: 'en_US',
   defaultOgImage: '/og-default.png',
-  themeColor: '#f59e0b',
+  themeColor: '#f5b700',
 };
 
 export const AUTHOR = {
