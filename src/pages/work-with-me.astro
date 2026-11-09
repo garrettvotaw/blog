@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, SERVICE_AREA } from '../consts';
+
+const site = Astro.site!;
+const schema = [
+  {
+    '@type': 'ProfessionalService',
+    '@id': `${site.href}#service`,
+    name: SITE.name,
+    url: new URL('/work-with-me/', site).href,
+    provider: { '@id': `${site.href}#org` },
+    areaServed: SERVICE_AREA,
+    serviceType: ['Custom software development', 'AI automation', 'iOS app development', 'Web application development'],
+  },
+];
+---
+
+<BaseLayout
+  title="Software development and AI automation in Lawton, OK"
+  description="Sunrise Development builds custom software, AI automation, and iOS apps for businesses in Lawton, Southwest Oklahoma, and remote clients."
+  schema={schema}
+>
+  <section class="wrap prose">
+    <h1>Work with me</h1>
+    <p class="lede">
+      Sunrise Development builds software for businesses in Lawton, Southwest Oklahoma, and anywhere remote, fast and
+      to a production standard.
+    </p>
+
+    <h2>What I build</h2>
+    <ul>
+      <li><strong>AI automation:</strong> intake forms, document processing, scheduling, and assistants that cut busywork.</li>
+      <li><strong>Custom web apps and internal tools:</strong> dashboards, portals, and systems that replace spreadsheets.</li>
+      <li><strong>iOS apps:</strong> from idea to App Store.</li>
+    </ul>
+
+    <h2>How it works</h2>
+    <ol>
+      <li>A short call to understand the problem.</li>
+      <li>A written scope with a timeline and an estimate.</li>
+      <li>Frequent working demos, not status reports.</li>
+    </ol>
+
+    {/* TODO: add a real contact method: a form service, a booking link, or a business email address. */}
+    <p><a class="button" href="mailto:hello@example.com">Start a conversation</a></p>
+  </section>
+</BaseLayout>

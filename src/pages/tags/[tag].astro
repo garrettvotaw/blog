@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts, tagSlug, type Post } from '../../utils/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const byTag = new Map<string, { name: string; posts: Post[] }>();
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = tagSlug(tag);
+      const entry = byTag.get(slug) ?? { name: tag, posts: [] };
+      entry.posts.push(post);
+      byTag.set(slug, entry);
+    }
+  }
+  return [...byTag].map(([tag, { name, posts }]) => ({ params: { tag }, props: { name, posts } }));
+}
+
+interface Props {
+  name: string;
+  posts: Post[];
+}
+const { name, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`Posts about ${name}`}
+  description={`Articles about ${name}: practical lessons on AI-assisted development and agentic workflows from Garrett Votaw.`}
+  noindex={posts.length < 2}
+>
+  <section class="wrap">
+    <p class="crumbs"><a href="/blog/">Writing</a> / tag</p>
+    <h1>#{name}</h1>
+    {posts.map((post) => <PostCard post={post} />)}
+  </section>
+</BaseLayout>

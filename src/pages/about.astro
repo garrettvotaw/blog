@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { AUTHOR } from '../consts';
+
+const site = Astro.site!;
+const schema = [
+  {
+    '@type': 'ProfilePage',
+    url: new URL('/about/', site).href,
+    mainEntity: { '@id': `${site.href}#person` },
+  },
+];
+---
+
+<BaseLayout
+  title="About Garrett Votaw"
+  description="Garrett Votaw is a software developer in Lawton, Oklahoma who builds agentic AI systems and ships production software at team speed."
+  schema={schema}
+>
+  <section class="wrap prose">
+    <h1>About</h1>
+
+    <p>
+      I'm {AUTHOR.name}, a software developer based in {AUTHOR.location}, and the founder of Sunrise Development.
+    </p>
+
+    {/* TODO: Decide how you describe your day job. Get approval before naming your employer or sharing internal metrics. */}
+    <p>
+      By day I lead AI development work, building enterprise applications with agentic, AI-native workflows. One
+      recent enterprise app shipped in about two months; a comparable effort without these methods had taken a much
+      larger team years.
+    </p>
+
+    <p>
+      My stack is TypeScript end to end: Angular, NestJS, and Nx monorepos, plus native iOS. Lately most of my time
+      goes into multi-agent systems: agents that run a board, break work into stories, write and review code, and open
+      pull requests, with a human making the calls that matter.
+    </p>
+
+    <h2>What I write about</h2>
+    <ul>
+      <li>Agentic development workflows that hold up in production</li>
+      <li>Multi-agent architecture: coordination, file ownership, human-in-the-loop design</li>
+      <li>Where AI coding fails, and how to catch it before it ships</li>
+      <li>Shipping iOS and web apps fast without cutting corners</li>
+    </ul>
+
+    <h2>Get in touch</h2>
+    <p>
+      Interested in working together? See <a href="/work-with-me/">work with me</a>. You can also find me on
+      <a href={AUTHOR.github} rel="me noopener">GitHub</a>{AUTHOR.linkedin && (<>, <a href={AUTHOR.linkedin} rel="me noopener">LinkedIn</a></>)}.
+    </p>
+  </section>
+</BaseLayout>

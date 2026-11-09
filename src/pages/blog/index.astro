@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getPosts } from '../../utils/posts';
+
+const posts = await getPosts();
+---
+
+<BaseLayout
+  title="Writing on agentic AI and shipping software fast"
+  description="Every post on agentic AI workflows, multi-agent architecture, and AI-assisted software development, newest first."
+>
+  <section class="wrap">
+    <h1>Writing</h1>
+    <p class="lede">Agentic workflows, multi-agent architecture, and what actually works when you ship production software with AI.</p>
+    {posts.length === 0 ? <p>First posts are on the way.</p> : posts.map((post) => <PostCard post={post} />)}
+  </section>
+</BaseLayout>

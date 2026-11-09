@@ -1,0 +1,107 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+import Comments from '../components/Comments.astro';
+import type { Post } from '../utils/posts';
+import { formatDate, readingMinutes, tagSlug } from '../utils/posts';
+import { SITE } from '../consts';
+
+interface Props {
+  post: Post;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { post, headings } = Astro.props;
+const { title, description, pubDate, updatedDate, tags, ogImage, draft } = post.data;
+const site = Astro.site!;
+const url = new URL(`/blog/${post.id}/`, site).href;
+const minutes = readingMinutes(post.body);
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3);
+
+const schema = [
+  {
+    '@type': 'BlogPosting',
+    '@id': `${url}#article`,
+    headline: title,
+    description,
+    url,
+    mainEntityOfPage: url,
+    datePublished: pubDate.toISOString(),
+    dateModified: (updatedDate ?? pubDate).toISOString(),
+    image: new URL(ogImage ?? SITE.defaultOgImage, site).href,
+    keywords: tags.join(', '),
+    wordCount: (post.body ?? '').split(/\s+/).filter(Boolean).length,
+    timeRequired: `PT${minutes}M`,
+    inLanguage: 'en-US',
+    author: { '@id': `${site.href}#person` },
+    publisher: { '@id': `${site.href}#org` },
+    isPartOf: { '@id': `${site.href}#website` },
+  },
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.href },
+      { '@type': 'ListItem', position: 2, name: 'Writing', item: new URL('/blog/', site).href },
+      { '@type': 'ListItem', position: 3, name: title, item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={ogImage}
+  type="article"
+  publishedTime={pubDate}
+  modifiedTime={updatedDate}
+  tags={tags}
+  noindex={draft}
+  schema={schema}
+>
+  <article class="wrap post">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> / <a href="/blog/">Writing</a>
+    </nav>
+
+    <header class="post-header">
+      {draft && <p class="badge">Draft — not published</p>}
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
+      <p class="meta">
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        {updatedDate && (
+          <>
+            {' '}· Updated <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time>
+          </>
+        )}
+        {' '}· {minutes} min read
+      </p>
+      {tags.length > 0 && (
+        <ul class="tags">
+          {tags.map((tag) => (
+            <li><a href={`/tags/${tagSlug(tag)}/`}>#{tag}</a></li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    {toc.length > 2 && (
+      <details class="toc" open>
+        <summary>On this page</summary>
+        <ol>
+          {toc.map((h) => (
+            <li class={`d${h.depth}`}><a href={`#${h.slug}`}>{h.text}</a></li>
+          ))}
+        </ol>
+      </details>
+    )}
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    <Newsletter />
+    <Comments />
+  </article>
+</BaseLayout>

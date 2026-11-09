@@ -1,0 +1,17 @@
+---
+import { NEWSLETTER } from '../consts';
+---
+
+{
+  NEWSLETTER.action && (
+    <aside class="newsletter" aria-labelledby="nl-heading">
+      <h2 id="nl-heading">Get new posts by email</h2>
+      <p>Agentic workflows and lessons from shipping real software with AI. No spam, unsubscribe anytime.</p>
+      <form action={NEWSLETTER.action} method="post" target="_blank">
+        <label class="sr-only" for="nl-email">Email address</label>
+        <input id="nl-email" type="email" name={NEWSLETTER.emailFieldName} placeholder="you@company.com" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </aside>
+  )
+}

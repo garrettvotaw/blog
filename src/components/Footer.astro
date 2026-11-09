@@ -1,0 +1,21 @@
+---
+import { SITE, AUTHOR } from '../consts';
+
+const socials = [
+  { href: AUTHOR.github, label: 'GitHub' },
+  { href: AUTHOR.linkedin, label: 'LinkedIn' },
+  { href: AUTHOR.x, label: 'X' },
+  { href: '/rss.xml', label: 'RSS' },
+].filter((s) => s.href);
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© {new Date().getFullYear()} {SITE.name} · {AUTHOR.location}</p>
+    <ul>
+      {socials.map(({ href, label }) => (
+        <li><a href={href} rel={href.startsWith('http') ? 'me noopener' : undefined}>{label}</a></li>
+      ))}
+    </ul>
+  </div>
+</footer>

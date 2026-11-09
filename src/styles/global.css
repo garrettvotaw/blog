@@ -1,0 +1,124 @@
+/* Sunrise — warm, quiet, fast. System fonts: zero font requests, best Core Web Vitals. */
+:root {
+  --bg: #fffdf8;
+  --surface: #fff6e8;
+  --text: #1f1a14;
+  --muted: #6b6257;
+  --border: #eadfce;
+  --accent: #c2410c;
+  --accent-soft: #fde7cf;
+  --code-bg: #f6f1ea;
+  --max: 42rem;
+  --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14110e;
+    --surface: #1d1915;
+    --text: #f2ebe2;
+    --muted: #a99e90;
+    --border: #2f2922;
+    --accent: #fb923c;
+    --accent-soft: #3a2616;
+    --code-bg: #1d1915;
+  }
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 1.0625rem/1.7 var(--font);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main { flex: 1; padding-block: 2.5rem 4rem; }
+
+.wrap { max-width: var(--max); margin-inline: auto; padding-inline: 1.25rem; }
+section.wrap + section.wrap { margin-top: 3rem; }
+
+a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+h1, h2, h3 { line-height: 1.25; letter-spacing: -0.015em; text-wrap: balance; }
+h1 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); margin: 0 0 0.75rem; }
+h2 { font-size: 1.45rem; margin: 2.5rem 0 0.75rem; }
+h3 { font-size: 1.15rem; margin: 2rem 0 0.5rem; }
+
+.lede { font-size: 1.15rem; color: var(--muted); }
+.meta { color: var(--muted); font-size: 0.9rem; margin: 0.25rem 0; }
+.eyebrow { color: var(--accent); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 0.75rem; }
+.crumbs { font-size: 0.875rem; color: var(--muted); margin-bottom: 1.5rem; }
+.crumbs a { color: var(--muted); }
+
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; top: 1rem; background: var(--bg); padding: 0.5rem 1rem; z-index: 10; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Header / footer */
+.site-header { border-bottom: 1px solid var(--border); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 0.5rem; color: var(--text); text-decoration: none; font-weight: 700; }
+.nav ul, .site-footer ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; flex-wrap: wrap; }
+.nav a:not(.brand) { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+.nav a[aria-current='page'], .nav a:not(.brand):hover { color: var(--text); }
+.site-footer { border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+.footer-inner { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-block: 1.5rem; }
+.site-footer p { margin: 0; }
+.site-footer a { color: var(--muted); }
+
+/* Hero + buttons */
+.hero h1 { font-size: clamp(2.1rem, 5.5vw, 3rem); }
+.cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.button {
+  display: inline-block; padding: 0.65rem 1.2rem; border-radius: 999px;
+  background: var(--accent); color: #fff; text-decoration: none; font-weight: 600;
+}
+.button.ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.button:hover { filter: brightness(1.08); }
+
+/* Post list */
+.post-card { padding-block: 1.25rem; border-bottom: 1px solid var(--border); }
+.post-card h3 { margin: 0 0 0.35rem; font-size: 1.2rem; }
+.post-card h3 a { color: var(--text); text-decoration: none; }
+.post-card h3 a:hover { color: var(--accent); }
+.post-card p { margin: 0.25rem 0; }
+.badge { display: inline-block; font-size: 0.75rem; font-weight: 600; background: var(--accent-soft); color: var(--accent); padding: 0.1rem 0.55rem; border-radius: 999px; vertical-align: middle; margin-left: 0.4rem; }
+
+/* Post */
+.post-header { margin-bottom: 2rem; }
+.tags { list-style: none; padding: 0; display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.75rem 0 0; }
+.tags a { font-size: 0.85rem; text-decoration: none; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0.1rem 0.6rem; color: var(--muted); }
+.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem 1.1rem; margin-bottom: 2rem; font-size: 0.95rem; }
+.toc summary { cursor: pointer; font-weight: 600; }
+.toc ol { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+.toc .d3 { margin-left: 1rem; list-style: circle; }
+
+.prose img { max-width: 100%; height: auto; border-radius: 10px; }
+.prose blockquote { margin: 1.5rem 0; padding: 0.25rem 1.25rem; border-left: 3px solid var(--accent); color: var(--muted); }
+.prose :not(pre) > code { font-family: var(--mono); font-size: 0.9em; background: var(--code-bg); border: 1px solid var(--border); padding: 0.1em 0.35em; border-radius: 5px; }
+.prose pre { font-family: var(--mono); font-size: 0.875rem; line-height: 1.6; padding: 1rem 1.15rem; border-radius: 10px; border: 1px solid var(--border); overflow-x: auto; }
+.prose table { width: 100%; border-collapse: collapse; font-size: 0.95rem; display: block; overflow-x: auto; }
+.prose th, .prose td { border-bottom: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
+.prose h2 a, .prose h3 a { color: inherit; text-decoration: none; }
+
+/* Newsletter + comments */
+.newsletter { margin-top: 3rem; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+.newsletter h2 { margin-top: 0; font-size: 1.2rem; }
+.newsletter form { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.newsletter input { flex: 1 1 14rem; padding: 0.6rem 0.9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font: inherit; }
+.newsletter button { padding: 0.6rem 1.2rem; border-radius: 999px; border: 0; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.comments { margin-top: 3rem; }
