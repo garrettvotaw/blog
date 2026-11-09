@@ -1,6 +1,7 @@
 ---
 import { url } from '../utils/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Horizon from '../components/Horizon.astro';
 import PostCard from '../components/PostCard.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getPosts } from '../utils/posts';
@@ -10,9 +11,9 @@ const posts = (await getPosts()).slice(0, 5);
 ---
 
 <BaseLayout title={SITE.title} description={SITE.description}>
-  <section class="wrap hero">
+  <Horizon>
     <p class="eyebrow">Garrett Votaw · Sunrise Development</p>
-    <h1>Shipping production software at team speed, as one developer with AI.</h1>
+    <h1 id="hero-title">Shipping production software at team speed, as <em>one developer</em> with AI.</h1>
     <p class="lede">
       I lead AI development work and build agentic systems that plan, write, review, and ship code. Here I write about
       what actually works, what breaks, and how to build software faster without lowering the bar.
@@ -21,7 +22,7 @@ const posts = (await getPosts()).slice(0, 5);
       <a class="button" href={url('/blog/')}>Read the writing</a>
       <a class="button ghost" href={url('/work-with-me/')}>Work with me</a>
     </p>
-  </section>
+  </Horizon>
 
   <section class="wrap">
     <h2>Latest</h2>
