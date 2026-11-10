@@ -1,22 +1,29 @@
 ---
 import { url } from '../utils/url';
-import type { Post } from '../utils/posts';
+import { readingMinutes, type Post } from '../utils/posts';
 
 interface Props {
   post: Post;
-  showDescription?: boolean;
+  /** Heading level for the title: h2 under a page h1, h3 under a section h2. */
+  level?: 'h2' | 'h3';
 }
-const { post, showDescription = false } = Astro.props;
+const { post, level = 'h2' } = Astro.props;
 const { title, description, pubDate, draft } = post.data;
-const shortDate = pubDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+const date = pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const minutes = readingMinutes(post.body);
+const Heading = level;
 ---
 
-<li>
-  <a href={url(`/blog/${post.id}/`)}>
-    <span class="row-title">
-      <span class="t">{title}</span>{draft && <span class="badge">draft</span>}
-      {showDescription && <span class="row-desc">{description}</span>}
-    </span>
-    <time class="row-meta" datetime={pubDate.toISOString()}>{shortDate}</time>
-  </a>
+<!-- The title link stretches over the whole entry, so the card is one click target
+     while screen readers hear just the title. -->
+<li class="post-item">
+  <article>
+    <p class="post-meta">
+      <time datetime={pubDate.toISOString()}>{date}</time> · {minutes} min read
+      {draft && <span class="badge">draft</span>}
+    </p>
+    <Heading class="post-title"><a href={url(`/blog/${post.id}/`)}>{title}</a></Heading>
+    <p class="post-desc">{description}</p>
+    <span class="post-read" aria-hidden="true">Read post</span>
+  </article>
 </li>

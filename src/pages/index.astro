@@ -6,13 +6,7 @@ import Newsletter from '../components/Newsletter.astro';
 import { getPosts } from '../utils/posts';
 import { SITE, AUTHOR } from '../consts';
 
-const posts = (await getPosts()).slice(0, 8);
-const elsewhere = [
-  { href: AUTHOR.github, label: 'GitHub', meta: 'Code' },
-  { href: AUTHOR.linkedin, label: 'LinkedIn', meta: 'Career' },
-  { href: AUTHOR.x, label: 'X', meta: 'Notes' },
-  { href: url('/rss.xml'), label: 'RSS', meta: 'Feed' },
-].filter((s) => s.href);
+const posts = (await getPosts()).slice(0, 5);
 ---
 
 <BaseLayout title={SITE.title} description={SITE.description}>
@@ -31,33 +25,20 @@ const elsewhere = [
       </p>
     </section>
 
-    <section class="block">
-      <h2 class="label">Writing</h2>
+    <section class="block" aria-labelledby="latest">
+      <div class="section-head">
+        <h2 id="latest">Latest posts</h2>
+        {posts.length > 0 && <a class="arrow" href={url('/blog/')}>All posts</a>}
+      </div>
       {
         posts.length === 0 ? (
           <p class="muted">First posts are on the way.</p>
         ) : (
-          <ul class="rows internal">
-            {posts.map((post) => <PostCard post={post} />)}
+          <ul class="posts">
+            {posts.map((post) => <PostCard post={post} level="h3" />)}
           </ul>
         )
       }
-    </section>
-
-    <section class="block">
-      <h2 class="label">Elsewhere</h2>
-      <ul class="rows">
-        {
-          elsewhere.map(({ href, label, meta }) => (
-            <li>
-              <a href={href} rel={href.startsWith('http') ? 'me noopener' : undefined}>
-                <span class="row-title"><span class="t">{label}</span></span>
-                <span class="row-meta">{meta}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </section>
 
     <Newsletter />

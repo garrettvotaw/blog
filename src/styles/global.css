@@ -79,7 +79,6 @@ p { margin: 0 0 1em; }
 .muted, .lede, .meta { color: var(--muted); }
 .lede { margin-bottom: 2rem; }
 .meta { font-size: 0.85rem; margin: 0; }
-.label { font-size: 0.85rem; font-weight: 400; color: var(--muted); margin: 0 0 1rem; }
 .crumbs { font-size: 0.85rem; color: var(--muted); margin-bottom: 2.5rem; }
 .crumbs a { transition: color 0.2s; }
 .crumbs a:hover { color: var(--text); }
@@ -109,25 +108,49 @@ p { margin: 0 0 1em; }
 .intro h1 { font-size: 1.05rem; margin-bottom: 0.15rem; }
 .intro .muted { margin-bottom: 1.75rem; }
 .block { margin-top: 4rem; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.25rem; }
+.section-head h2 { font-size: 1rem; }
+.section-head .arrow { font-size: 0.88rem; color: var(--muted); transition: color 0.2s; }
+.section-head .arrow:hover { color: var(--text); }
+
+/* Listing pages (blog index, tags): the h1 outranks the post titles below it. */
+.page-head { margin-bottom: 1.5rem; }
+.page-head h1 { font-size: 1.6rem; line-height: 1.25; margin-bottom: 0.5rem; }
+.page-head .lede { margin-bottom: 0; }
 
 /* Arrow links: the arrow slides on hover. */
 .arrow { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 500; }
 .arrow::after { content: '→'; transition: transform 0.35s var(--ease); }
 .arrow:hover::after { transform: translateX(3px); }
 
-/* Rows: hovering one dims the others. */
-.rows { list-style: none; margin: 0; padding: 0; }
-.rows a { display: flex; align-items: baseline; gap: 1rem; padding-block: 0.55rem; transition: opacity 0.25s var(--ease); }
-.rows .row-title { flex: 1; min-width: 0; }
-.rows .row-meta { color: var(--muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.rows .row-desc { display: block; color: var(--muted); font-size: 0.88rem; margin-top: 0.1rem; }
-.rows .t::after { content: ' ↗'; opacity: 0; display: inline-block; transform: translate(-3px, 2px); transition: opacity 0.25s, transform 0.35s var(--ease); color: var(--muted); }
-.rows a:hover .t::after { opacity: 1; transform: none; }
-@media (hover: hover) {
-  .rows:hover a { opacity: 0.4; }
-  .rows:hover a:hover { opacity: 1; }
+/* Post list: each entry reads as an article (date, title, summary, cue),
+   separated by hairlines. The title link stretches over the whole entry.
+   Hover draws the title underline and slides the arrow; others dim. */
+.posts { list-style: none; margin: 0; padding: 0; }
+.post-item { position: relative; padding-block: 1.6rem; border-bottom: 1px solid var(--border); transition: opacity 0.25s var(--ease); }
+.post-item:first-child { padding-top: 1.1rem; }
+.post-item:last-child { border-bottom: 0; }
+.post-meta { color: var(--muted); font-size: 0.82rem; font-variant-numeric: tabular-nums; margin: 0 0 0.4rem; }
+.post-title { font-size: 1.2rem; line-height: 1.3; margin-bottom: 0.45rem; }
+.post-title a {
+  background-image: linear-gradient(var(--text), var(--text));
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.45s var(--ease);
 }
-.rows.internal .t::after { content: ' →'; }
+.post-title a::after { content: ''; position: absolute; inset: 0; border-radius: 6px; }
+.post-title a:focus-visible { outline: none; }
+.post-title a:focus-visible::after { outline: 2px solid var(--highlight); outline-offset: 4px; }
+.post-desc { color: var(--muted); margin: 0 0 0.7rem; }
+.post-read { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.88rem; font-weight: 500; }
+.post-read::after { content: '→'; transition: transform 0.35s var(--ease); }
+.post-item:hover .post-title a { background-size: 100% 1px; }
+.post-item:hover .post-read::after { transform: translateX(3px); }
+@media (hover: hover) {
+  .posts:hover .post-item { opacity: 0.45; }
+  .posts:hover .post-item:hover { opacity: 1; }
+}
 
 /* Staggered entrance */
 .stagger > * { animation: enter 0.7s var(--ease) both; animation-delay: calc(var(--i, 0) * 70ms); }

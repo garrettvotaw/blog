@@ -31,9 +31,11 @@ const { name, posts } = Astro.props;
   noindex={posts.length < 2}
 >
   <section class="wrap stagger">
-    <p class="crumbs"><a href={url('/blog/')}>Writing</a> / tag</p>
-    <h1>#{name}</h1>
-    <p class="lede">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
-    <ul class="rows internal">{posts.map((post) => <PostCard post={post} showDescription />)}</ul>
+    <p class="crumbs"><a href={url('/blog/')}>Blog</a> / tag</p>
+    <header class="page-head">
+      <h1>#{name}</h1>
+      <p class="lede">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+    </header>
+    <ul class="posts">{posts.map((post) => <PostCard post={post} />)}</ul>
   </section>
 </BaseLayout>

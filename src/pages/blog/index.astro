@@ -11,8 +11,10 @@ const posts = await getPosts();
   description="Every post on agentic AI workflows, multi-agent architecture, and AI-assisted software development, newest first."
 >
   <section class="wrap stagger">
-    <h1>Writing</h1>
-    <p class="lede">Agentic workflows, multi-agent architecture, and what actually works when you ship production software with AI.</p>
-    {posts.length === 0 ? <p class="muted">First posts are on the way.</p> : <ul class="rows internal">{posts.map((post) => <PostCard post={post} showDescription />)}</ul>}
+    <header class="page-head">
+      <h1>Blog</h1>
+      <p class="lede">Agentic workflows, multi-agent architecture, and what actually works when you ship production software with AI.</p>
+    </header>
+    {posts.length === 0 ? <p class="muted">First posts are on the way.</p> : <ul class="posts">{posts.map((post) => <PostCard post={post} />)}</ul>}
   </section>
 </BaseLayout>
