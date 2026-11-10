@@ -31,7 +31,9 @@ Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goa
 ## Content rules (important)
 
 - Never include code, screenshots, internal metrics, or identifying details from Love's Travel Stops or Fleetzero. Both have strict non-competes and confidentiality expectations; describe methods, not employer work.
-- Do not write about Orbit (github.com/garrettvotaw/orbit) until Garrett confirms ownership is cleared with his employer. General multi-agent concepts are fine.
+- Orbit (github.com/garrettvotaw/orbit): never name it, link it, or show its code or screenshots. Garrett has OK'd describing its architecture as a pattern (PM agents, story owners with file claims, product questioner, API researcher, coder, QA agents on Playwright scripts).
+- The enterprise SAP app built at Love's: publish no details at all, not even anonymized. Planned post 2 is off unless Garrett says otherwise.
+- Internal links inside Markdown posts must be relative (e.g. `../../work-with-me/`) so they survive a base-path change.
 - Drafts are written for Garrett to rewrite in his own voice. Keep bracketed prompts where he must supply facts; never invent numbers or results.
 
 ## Open TODOs
@@ -44,8 +46,8 @@ Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goa
 
 ## Planned first posts
 
-1. My AI development workflow, end to end (draft exists)
-2. How I built an enterprise app in 2 months (anonymized, method-focused, needs approval)
+1. My AI development workflow, end to end (draft written from interview; two bracketed gaps left for Garrett)
+2. ~~How I built an enterprise app in 2 months~~ (dropped: Love's work, no details may be published)
 3. Where AI coding fails, and how I catch it
 4. Building and shipping an iOS app in a weekend
 5. Why I'm starting a dev business in Lawton, Oklahoma
