@@ -1,9 +1,9 @@
 ---
 title: 'My AI development workflow, end to end'
 description: 'How I ship production software with a team of AI agents: a PM agent, story owners that claim files, a QA team on Playwright, and where I stay in charge.'
-pubDate: 2026-11-15
+pubDate: 2026-11-10
 tags: ['agentic workflows', 'multi-agent systems', 'ai-assisted development', 'claude code']
-draft: true
+draft: false
 ---
 
 My AI development workflow isn't "an assistant in my editor." It's a small software team made of agents. A PM agent holds the whole project in its head. Story owners claim the files they'll touch before they start. Specialists ask product questions and dig up undocumented APIs. A coder writes the code, and a QA team of agents runs every story in a real dev environment before I ever look at it. I make two calls myself: what we're building, and what gets merged.

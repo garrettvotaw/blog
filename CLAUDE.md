@@ -46,7 +46,7 @@ Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goa
 
 ## Planned first posts
 
-1. My AI development workflow, end to end (draft complete from interview; awaiting Garrett's go to publish)
+1. My AI development workflow, end to end (published 2026-11-10)
 2. ~~How I built an enterprise app in 2 months~~ (dropped: Love's work, no details may be published)
 3. Where AI coding fails, and how I catch it
 4. Building and shipping an iOS app in a weekend
