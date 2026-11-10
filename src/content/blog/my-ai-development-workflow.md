@@ -29,7 +29,7 @@ I don't use VS Code anymore. Who even does? I work in a desktop app I wrote myse
 
 Most of my work is legacy migration, which is the hardest possible environment for AI: old code, undocumented behavior, and integrations nobody fully remembers. So the first thing I built was a legacy code reader, a tool whose job is to understand the existing system before anyone changes it.
 
-[One or two sentences on what the legacy code reader produces: a map of the system, business rules pulled out of old code, something else? Keep it general.]
+It's an agent that answers questions about the old code by parsing the binary file directly. Instead of me spelunking through a legacy system, every other agent in the pipeline can just ask it how something works.
 
 The rule underneath all of this: an agent should never have to guess. Every question it would otherwise guess at gets answered up front, either by the reader, by a specialist agent, or by me.
 
@@ -54,7 +54,7 @@ Nothing gets to me on vibes. Every story passes through gates:
 3. **End-to-end tests.**
 4. **The QA team.** This is the biggest thing I've added. A team of QA agents runs each story in the dev environment, the way a person would click through it, using Playwright scripts on a custom Playwright harness I built.
 
-The QA agents use Playwright *scripts*, not the Playwright MCP server. [One sentence on why scripts beat the MCP server for you: repeatable runs, speed, cost, reliability?]
+The QA agents use Playwright *scripts*, not the Playwright MCP server. The MCP server drives a browser UI one step at a time; scripts just run, and they're *way* faster. When QA runs on every story, that speed is the difference between a gate you keep and a gate you skip.
 
 By the time a story reaches me, it has been specified, questioned, researched, built, verified against its criteria, tested, and used.
 
