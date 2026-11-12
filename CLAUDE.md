@@ -18,7 +18,7 @@ Personal dev blog for Garrett Votaw (Lawton, Oklahoma), branded under his own na
 - Identity, socials, newsletter, giscus: `src/consts.ts`. Empty values hide those features.
 - All SEO tags and JSON-LD: `src/components/BaseHead.astro`; post schema in `src/layouts/BlogPost.astro`.
 - Post frontmatter schema with SEO length limits: `src/content.config.ts`.
-- Design: editorial minimal. Small system-font type, whitespace, near-monochrome (`src/styles/global.css`). Detail lives in subtle CSS motion: post lists (`.posts`: date, title, summary, "Read post" cue; whole entry clickable, others dim on hover), sliding arrows, drawn underlines, staggered entrance, cross-page view transitions. Keep motion subtle and behind `prefers-reduced-motion`; no illustrations or decorative gradients.
+- Design: editorial minimal. Small system-font type, whitespace, near-monochrome (`src/styles/global.css`). The one color mark is the gradient sunrise logo from the Sunrise Development site (`public/logo.svg` in the header, `public/favicon.svg` as the tab icon); keep it in sync with that repo. Detail lives in subtle CSS motion: post lists (`.posts`: date, title, summary, "Read post" cue; whole entry clickable, others dim on hover), sliding arrows, drawn underlines, staggered entrance, cross-page view transitions. Keep motion subtle and behind `prefers-reduced-motion`; no illustrations or decorative gradients.
 - Asides: `:aside[Who even does?]` in a post renders as an inline chat bubble that pops in as it scrolls into view (`src/utils/remark-aside.mjs` plus `.aside` and `--bubble` in `global.css`). The bubble is CSS-only, so RSS, search snippets and screen readers get just the words.
 
 ## SEO rules (keep these intact)
