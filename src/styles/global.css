@@ -235,8 +235,9 @@ p { margin: 0 0 1em; }
    lands in the sentence. :aside[...] in Markdown. The bubble is all CSS,
    so copy, RSS and screen readers get just the words. inline-block keeps
    a bubble in one piece: it moves to the next line rather than split.
-   The tail is two pseudo-elements: a bubble-colored corner, and a
-   page-colored curve that carves it into a hook. */
+   The tail is a bubble-colored square with a quarter circle masked out
+   of its top-left, leaving a hook. The mask is transparent, so the tail
+   sits cleanly on the sunrise glow or any other background. */
 .aside {
   position: relative;
   display: inline-block;
@@ -249,9 +250,17 @@ p { margin: 0 0 1em; }
   font-size: 0.92em;
   line-height: 1.5;
 }
-.aside::before, .aside::after { content: ''; position: absolute; bottom: 0; height: 1.1em; }
-.aside::before { left: -0.4em; width: 1.1em; background: var(--bubble); border-bottom-right-radius: 0.9em; }
-.aside::after { left: -0.65em; width: 0.65em; background: var(--bg); border-bottom-right-radius: 0.6em; }
+.aside::before {
+  content: '';
+  position: absolute;
+  left: -0.45em;
+  bottom: 0;
+  width: 1em;
+  height: 1em;
+  background: var(--bubble);
+  -webkit-mask: radial-gradient(circle at 0 0, transparent 1em, #000 1.03em);
+  mask: radial-gradient(circle at 0 0, transparent 1em, #000 1.03em);
+}
 /* The bubble pops in as it scrolls into view, where scroll-driven
    animation is supported. Elsewhere it is simply there. */
 @supports (animation-timeline: view()) {
