@@ -93,6 +93,17 @@ body::after {
   animation: sunrise 2.4s var(--ease) both;
 }
 @keyframes sunrise { from { opacity: 0; transform: translate(-50%, 100%); } }
+/* Scrolling down sets the sun, leaving a faint afterglow; scrolling back up
+   raises it again, never higher than its resting position. Pure CSS: browsers
+   without scroll-driven animations keep the static sun. Uses `translate` so it
+   stacks with the load animation's `transform`. */
+@supports (animation-timeline: scroll()) {
+  body::after {
+    animation: sunrise 2.4s var(--ease) both, sunset auto linear both;
+    animation-timeline: auto, scroll(root);
+  }
+}
+@keyframes sunset { to { translate: 0 calc(var(--sun-peek) + 6rem); } }
 @media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
 
 ::selection { background: var(--highlight); color: #111; }
