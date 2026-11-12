@@ -58,14 +58,16 @@ body {
 /* Sunrise: a faint orange sun cresting the bottom edge of the viewport.
    Only the top of the disc shows; a soft glow blends up from it. */
 :root {
-  --sun: rgb(255 146 70 / 0.22);
+  --sun: rgb(255 146 70 / 0.18);
+  --sun-core: rgb(255 140 64 / 0.26);
   --sun-glow: rgb(255 150 80 / 0.10);
   --sun-haze: rgb(255 176 120 / 0.06);
   --sun-peek: clamp(3.5rem, 9vw, 6.5rem);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --sun: rgb(255 128 56 / 0.16);
+    --sun: rgb(255 128 56 / 0.13);
+    --sun-core: rgb(255 124 52 / 0.19);
     --sun-glow: rgb(255 120 50 / 0.12);
     --sun-haze: rgb(255 140 70 / 0.06);
   }
@@ -75,10 +77,11 @@ body::after {
   position: fixed;
   left: 50%;
   bottom: 0;
-  width: clamp(30rem, 100vw, 64rem);
+  width: clamp(44rem, 160vw, 120rem);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--sun);
+  /* Brightest at the screen edge, easing slightly lighter out to the rim. */
+  background: radial-gradient(circle closest-side, var(--sun-core) calc(100% - var(--sun-peek)), var(--sun) 100%);
   box-shadow: 0 0 4rem 1rem var(--sun-glow), 0 0 14rem 6rem var(--sun-haze);
   transform: translate(-50%, calc(100% - var(--sun-peek)));
   pointer-events: none;
