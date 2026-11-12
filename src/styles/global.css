@@ -191,14 +191,14 @@ p { margin: 0 0 1em; }
 .prose th, .prose td { border-bottom: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
 .prose th { font-weight: 600; }
 
-/* Asides: the under-the-breath remark, set off like a code comment.
-   :aside[...] in Markdown. The comment marks are drawn here, so copy,
-   RSS and screen readers get only the words (the "/ ''" alt text hides
-   them from screen readers; the line before it is the fallback). */
-.aside { color: var(--muted); }
-.aside::before, .aside::after { font-family: var(--mono); font-size: 0.8em; color: var(--faint); }
-.aside::before { content: '/*'; content: '/*' / ''; margin-inline-end: 0.3em; }
-.aside::after { content: '*/'; content: '*/' / ''; margin-inline-start: 0.3em; }
+/* Asides: the under-the-breath remark, set as a code comment in the
+   mono font. :aside[...] in Markdown. The comment marks are drawn here,
+   so copy, RSS and screen readers get only the words (the "/ ''" alt
+   text hides them from screen readers; the line before is the fallback).
+   Margins, not spaces, so a line never breaks between a mark and a word. */
+.aside { font-family: var(--mono); font-size: 0.88em; color: var(--muted); }
+.aside::before { content: '/*'; content: '/*' / ''; margin-inline-end: 0.6em; }
+.aside::after { content: '*/'; content: '*/' / ''; margin-inline-start: 0.6em; }
 
 /* Newsletter + comments */
 .newsletter { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
