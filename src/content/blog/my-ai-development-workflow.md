@@ -23,7 +23,7 @@ Most "how I code with AI" posts stop at autocomplete and chat. This one covers t
 
 Claude does almost all of the work. Sonnet 5.5 and Opus 5.5 are the primary drivers. I reach for Fable only for heavy architectural decisions, where slower and deeper thinking is worth it.
 
-I don't use VS Code anymore. Who even does? I work in a desktop app I wrote myself that runs the Claude Agent SDK under the hood. Owning the harness is what makes everything below possible: the roles, the hand-offs, and the gates are all mine to shape.
+I don't use VS Code anymore. :aside[Who even does?] I work in a desktop app I wrote myself that runs the Claude Agent SDK under the hood. Owning the harness is what makes everything below possible: the roles, the hand-offs, and the gates are all mine to shape.
 
 ## 1. Planning: turning a ticket into something an agent can't misread
 

@@ -2,6 +2,8 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import remarkDirective from 'remark-directive';
+import remarkAside from './src/utils/remark-aside.mjs';
 
 // ─────────────────────────────────────────────────────────────
 // SITE + BASE decide every URL (canonical, sitemap, RSS, robots.txt,
@@ -27,6 +29,8 @@ export default defineConfig({
     }),
   ],
   markdown: {
+    // :aside[...] in a post renders as a sarcastic aside (see the plugin).
+    remarkPlugins: [remarkDirective, remarkAside],
     shikiConfig: {
       themes: { light: 'github-light', dark: 'github-dark' },
       wrap: true,

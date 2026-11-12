@@ -191,6 +191,15 @@ p { margin: 0 0 1em; }
 .prose th, .prose td { border-bottom: 1px solid var(--border); padding: 0.5rem 0.75rem; text-align: left; }
 .prose th { font-weight: 600; }
 
+/* Asides: the under-the-breath remark, set off like a code comment.
+   :aside[...] in Markdown. The comment marks are drawn here, so copy,
+   RSS and screen readers get only the words (the "/ ''" alt text hides
+   them from screen readers; the line before it is the fallback). */
+.aside { color: var(--muted); }
+.aside::before, .aside::after { font-family: var(--mono); font-size: 0.8em; color: var(--faint); }
+.aside::before { content: '/*'; content: '/*' / ''; margin-inline-end: 0.3em; }
+.aside::after { content: '*/'; content: '*/' / ''; margin-inline-start: 0.3em; }
+
 /* Newsletter + comments */
 .newsletter { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
 .newsletter h2 { font-size: 0.95rem; margin-bottom: 0.25rem; }
