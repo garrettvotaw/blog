@@ -93,17 +93,18 @@ body::after {
   animation: sunrise 2.4s var(--ease) both;
 }
 @keyframes sunrise { from { opacity: 0; transform: translate(-50%, 100%); } }
-/* Scrolling down sets the sun, leaving a faint afterglow; scrolling back up
-   raises it again, never higher than its resting position. Pure CSS: browsers
-   without scroll-driven animations keep the static sun. Uses `translate` so it
-   stacks with the load animation's `transform`. */
+/* The sun rises as the reader scrolls: it starts part of the way up at the
+   top of the page and reaches its resting position at the bottom. Pure CSS:
+   browsers without scroll-driven animations (and pages that don't scroll) show
+   the sun at rest. Uses `translate` so it stacks with the load animation's
+   `transform`. */
 @supports (animation-timeline: scroll()) {
   body::after {
-    animation: sunrise 2.4s var(--ease) both, sunset auto linear both;
+    animation: sunrise 2.4s var(--ease) both, sun-climb auto linear both;
     animation-timeline: auto, scroll(root);
   }
 }
-@keyframes sunset { to { translate: 0 calc(var(--sun-peek) + 6rem); } }
+@keyframes sun-climb { from { translate: 0 calc(var(--sun-peek) * 0.55); } to { translate: 0 0; } }
 @media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
 
 ::selection { background: var(--highlight); color: #111; }
