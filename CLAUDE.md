@@ -34,7 +34,21 @@ Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goa
 - Orbit (github.com/garrettvotaw/orbit): never name it, link it, or show its code or screenshots. Garrett has OK'd describing its architecture as a pattern (PM agents, story owners with file claims, product questioner, API researcher, coder, QA agents on Playwright scripts).
 - The enterprise SAP app built at Love's: publish no details at all, not even anonymized. Planned post 2 is off unless Garrett says otherwise.
 - Internal links inside Markdown posts must be relative (e.g. `../../work-with-me/`) so they survive a base-path change.
-- Drafts are written for Garrett to rewrite in his own voice. Keep bracketed prompts where he must supply facts; never invent numbers or results.
+- Garrett writes first drafts (typed, dictated, or his answers to an interview); Claude edits them (see Writing and voice). Never invent numbers, results, or stories: leave a [bracketed prompt] wherever he must supply a fact.
+
+## Writing and voice
+
+- Workflow: Garrett drafts, Claude edits. To start a post from nothing, interview him with questions in chat and use his answers as the draft. Don't write prose for him to rewrite.
+- Editing means structure, cuts, clarity, title and description, and fact and confidentiality checks. Keep his wording: tighten his sentences, don't swap in smoother ones. The test for any line: would Garrett say it out loud to another developer?
+- Every post needs at least one specific story from his own work, one thing that went wrong, and one opinion a reader could disagree with. If a draft lacks one, ask for it; don't fill it in.
+- Avoid these patterns, and flag them in his drafts:
+  - Lines that announce the post's value ("Most X posts stop at Y. This one covers Z.").
+  - "Not X, it's Y" contrasts and colon reveals ("The rule underneath all of this: ...").
+  - One-liners that close a paragraph or section ("You're building the team before the team builds the software.").
+  - Lists of three for rhythm ("the scope, the history, and the traps"), and recaps that chain verbs ("specified, questioned, researched, built...").
+  - Summary sections that repeat the intro, and bullet lists where every item opens with a bold phrase.
+  - Superlatives and promises with nothing behind them ("the hardest possible environment", "you'll notice the difference immediately").
+- His voice, to keep: plain and casual, short asides and jabs ("Who even does?"), "honestly", italics for emphasis ("*way* faster").
 
 ## Open TODOs
 
