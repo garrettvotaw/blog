@@ -1,6 +1,6 @@
-# Sunrise Development blog
+# Garrett Votaw's blog
 
-Personal dev blog for Garrett Votaw (Sunrise Development, Lawton, Oklahoma). Goal: be found and known as a leading voice on agentic AI development. SEO is a top priority. Minimal cost: static Astro site on GitHub Pages plus a custom domain (~$12/yr). No paid services.
+Personal dev blog for Garrett Votaw (Lawton, Oklahoma), branded under his own name. His business, Sunrise Development (`BUSINESS` in `src/consts.ts`), appears only as what he offers on the Work with me page, the About page and the home intro; in JSON-LD it is the Organization he works for, while the Person publishes the site and posts. Goal: be found and known as a leading voice on agentic AI development. SEO is a top priority. Minimal cost: static Astro site on GitHub Pages plus a custom domain (~$12/yr). No paid services.
 
 ## Stack and commands
 

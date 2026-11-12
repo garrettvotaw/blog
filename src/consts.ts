@@ -2,13 +2,19 @@
 // structured data (JSON-LD) so search engines tie every post to you.
 
 export const SITE = {
-  name: 'Sunrise Development',
+  name: 'Garrett Votaw',
   title: 'Garrett Votaw — AI-native software development',
   description:
     'Practical writing on agentic AI workflows, multi-agent architecture, and shipping production software fast with AI. From Lawton, Oklahoma.',
   locale: 'en_US',
   defaultOgImage: '/og-default.png',
   themeColor: '#fcfcfc',
+};
+
+// The business. The site is your personal blog; the business is
+// what you offer on the Work with me page.
+export const BUSINESS = {
+  name: 'Sunrise Development',
 };
 
 export const AUTHOR = {

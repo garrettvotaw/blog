@@ -1,13 +1,13 @@
 ---
 import { absUrl } from '../utils/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, SERVICE_AREA } from '../consts';
+import { BUSINESS, SERVICE_AREA } from '../consts';
 
 const schema = [
   {
     '@type': 'ProfessionalService',
     '@id': `${absUrl('/')}#service`,
-    name: SITE.name,
+    name: BUSINESS.name,
     url: absUrl('/work-with-me/'),
     provider: { '@id': `${absUrl('/')}#org` },
     areaServed: SERVICE_AREA,
