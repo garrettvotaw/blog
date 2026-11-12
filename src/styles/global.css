@@ -58,18 +58,18 @@ body {
 /* Sunrise: a faint orange sun cresting the bottom edge of the viewport.
    Only the top of the disc shows; a soft glow blends up from it. */
 :root {
-  --sun: rgb(255 146 70 / 0.18);
-  --sun-core: rgb(255 140 64 / 0.26);
-  --sun-glow: rgb(255 150 80 / 0.10);
-  --sun-haze: rgb(255 176 120 / 0.06);
+  --sun: rgb(255 146 70 / 0.16);
+  --sun-core: rgb(255 140 64 / 0.25);
+  --sun-glow: rgb(255 150 80 / 0.115);
+  --sun-haze: rgb(255 176 120 / 0.08);
   --sun-peek: clamp(3.5rem, 9vw, 6.5rem);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --sun: rgb(255 128 56 / 0.13);
-    --sun-core: rgb(255 124 52 / 0.19);
-    --sun-glow: rgb(255 120 50 / 0.12);
-    --sun-haze: rgb(255 140 70 / 0.06);
+    --sun: rgb(255 128 56 / 0.09);
+    --sun-core: rgb(255 124 52 / 0.16);
+    --sun-glow: rgb(255 120 50 / 0.14);
+    --sun-haze: rgb(255 140 70 / 0.08);
   }
 }
 body::after {
