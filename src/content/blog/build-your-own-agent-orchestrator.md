@@ -3,7 +3,7 @@ title: 'Stop shopping for agent orchestration tools. Build your own.'
 description: 'Why I skip off-the-shelf agent orchestration tools and built my own on the Claude Agent SDK, with plain app logic deciding when to wake an LLM.'
 pubDate: 2026-11-12
 tags: ['agent orchestration', 'claude agent sdk', 'multi-agent systems', 'agentic workflows']
-draft: true
+draft: false
 ---
 
 Agent orchestration is all the rage right now. It's like every week someone sends me a new tool. [Copilot has their own](https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/), [Herdr](https://herdr.dev) is a thing, and of course [Claude has their version](https://code.claude.com/docs/en/agents).
