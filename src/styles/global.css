@@ -55,6 +55,27 @@ body {
   display: flex;
   flex-direction: column;
 }
+/* Sunrise: a soft warm circle rising from the bottom edge of the viewport. */
+body::after {
+  content: '';
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: min(90vw, 56rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, 62%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 138, 51, 0.22) 0%, rgba(255, 166, 90, 0.11) 38%, rgba(255, 190, 130, 0) 68%);
+  pointer-events: none;
+  z-index: -1;
+  animation: sunrise 2.4s var(--ease) both;
+}
+@media (prefers-color-scheme: dark) {
+  body::after { background: radial-gradient(circle, rgba(255, 122, 40, 0.26) 0%, rgba(255, 140, 60, 0.12) 38%, rgba(255, 150, 70, 0) 68%); }
+}
+@keyframes sunrise { from { opacity: 0; transform: translate(-50%, 78%); } }
+@media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
+
 ::selection { background: var(--highlight); color: #111; }
 :focus-visible { outline: 2px solid var(--highlight); outline-offset: 3px; border-radius: 3px; }
 
