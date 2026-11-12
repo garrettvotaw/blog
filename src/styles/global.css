@@ -55,25 +55,50 @@ body {
   display: flex;
   flex-direction: column;
 }
-/* Sunrise: the orb sits below the viewport; only its warm light spills up the bottom edge. */
+/* Sunrise: the sun sits just below the bottom edge; only its light reaches
+   the page. Layered like real dawn: a gold core at the horizon, an orange
+   glow, and a wide rose haze, with fine grain to stop gradient banding. */
+:root {
+  --dawn-core: rgb(255 190 96 / 0.42);
+  --dawn-glow: rgb(255 136 64 / 0.26);
+  --dawn-haze: rgb(246 128 128 / 0.13);
+  --dawn-grain: 0.045;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dawn-core: rgb(255 168 72 / 0.36);
+    --dawn-glow: rgb(255 108 38 / 0.24);
+    --dawn-haze: rgb(214 82 104 / 0.14);
+    --dawn-grain: 0.06;
+  }
+}
+body::before,
 body::after {
   content: '';
   position: fixed;
-  left: 50%;
-  bottom: 0;
-  width: min(150vw, 84rem);
-  aspect-ratio: 1;
-  transform: translate(-50%, 72%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 138, 51, 0.4) 0%, rgba(255, 150, 70, 0.26) 22%, rgba(255, 170, 100, 0.12) 38%, rgba(255, 190, 130, 0) 60%);
+  inset: auto 0 0;
+  height: min(78vh, 46rem);
   pointer-events: none;
   z-index: -1;
-  animation: sunrise 2.4s var(--ease) both;
 }
-@media (prefers-color-scheme: dark) {
-  body::after { background: radial-gradient(circle, rgba(255, 122, 40, 0.46) 0%, rgba(255, 135, 55, 0.28) 22%, rgba(255, 145, 65, 0.12) 38%, rgba(255, 150, 70, 0) 60%); }
+body::after {
+  background:
+    radial-gradient(34% 30% at 50% 110%, var(--dawn-core) 0%, color-mix(in srgb, var(--dawn-core) 72%, transparent) 18%, color-mix(in srgb, var(--dawn-core) 42%, transparent) 38%, color-mix(in srgb, var(--dawn-core) 18%, transparent) 60%, color-mix(in srgb, var(--dawn-core) 6%, transparent) 80%, transparent 100%),
+    radial-gradient(60% 58% at 50% 112%, var(--dawn-glow) 0%, color-mix(in srgb, var(--dawn-glow) 72%, transparent) 18%, color-mix(in srgb, var(--dawn-glow) 42%, transparent) 38%, color-mix(in srgb, var(--dawn-glow) 18%, transparent) 60%, color-mix(in srgb, var(--dawn-glow) 6%, transparent) 80%, transparent 100%),
+    radial-gradient(100% 90% at 50% 120%, var(--dawn-haze) 0%, color-mix(in srgb, var(--dawn-haze) 72%, transparent) 18%, color-mix(in srgb, var(--dawn-haze) 42%, transparent) 38%, color-mix(in srgb, var(--dawn-haze) 18%, transparent) 60%, color-mix(in srgb, var(--dawn-haze) 6%, transparent) 80%, transparent 100%);
+  transform-origin: 50% 100%;
+  z-index: -2;
+  animation: sunrise 2.8s var(--ease) both, dawn-breathe 14s ease-in-out 2.8s infinite alternate;
 }
-@keyframes sunrise { from { opacity: 0; transform: translate(-50%, 85%); } }
+body::before {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: var(--dawn-grain);
+  mix-blend-mode: overlay;
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 112%, #000 30%, transparent);
+  mask-image: radial-gradient(70% 70% at 50% 112%, #000 30%, transparent);
+}
+@keyframes sunrise { from { opacity: 0; transform: translateY(12%) scaleY(0.85); } }
+@keyframes dawn-breathe { to { opacity: 0.82; transform: scale(1.03); } }
 @media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
 
 ::selection { background: var(--highlight); color: #111; }
