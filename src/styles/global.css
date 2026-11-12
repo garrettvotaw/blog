@@ -55,25 +55,25 @@ body {
   display: flex;
   flex-direction: column;
 }
-/* Sunrise: a soft warm circle rising from the bottom edge of the viewport. */
+/* Sunrise: the orb sits below the viewport; only its warm light spills up the bottom edge. */
 body::after {
   content: '';
   position: fixed;
   left: 50%;
   bottom: 0;
-  width: min(90vw, 56rem);
+  width: min(150vw, 84rem);
   aspect-ratio: 1;
-  transform: translate(-50%, 62%);
+  transform: translate(-50%, 72%);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 138, 51, 0.22) 0%, rgba(255, 166, 90, 0.11) 38%, rgba(255, 190, 130, 0) 68%);
+  background: radial-gradient(circle, rgba(255, 138, 51, 0.4) 0%, rgba(255, 150, 70, 0.26) 22%, rgba(255, 170, 100, 0.12) 38%, rgba(255, 190, 130, 0) 60%);
   pointer-events: none;
   z-index: -1;
   animation: sunrise 2.4s var(--ease) both;
 }
 @media (prefers-color-scheme: dark) {
-  body::after { background: radial-gradient(circle, rgba(255, 122, 40, 0.26) 0%, rgba(255, 140, 60, 0.12) 38%, rgba(255, 150, 70, 0) 68%); }
+  body::after { background: radial-gradient(circle, rgba(255, 122, 40, 0.46) 0%, rgba(255, 135, 55, 0.28) 22%, rgba(255, 145, 65, 0.12) 38%, rgba(255, 150, 70, 0) 60%); }
 }
-@keyframes sunrise { from { opacity: 0; transform: translate(-50%, 78%); } }
+@keyframes sunrise { from { opacity: 0; transform: translate(-50%, 85%); } }
 @media (prefers-reduced-motion: reduce) { body::after { animation: none; } }
 
 ::selection { background: var(--highlight); color: #111; }
